@@ -55,7 +55,9 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
 
         dbEntry = [firstName, lastName, address, address2, city, state, zipCode]
 
-
+        c = conn.cursor()
+        c.execute("INSERT INTO customers VALUES (firstName, lastName, address, address2, city, state, zipCode)")
+        conn.committ()
 
         #for i in range(len(dbEntry)):
          #   print(dbEntry[i])
