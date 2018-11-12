@@ -61,22 +61,30 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
          #   print(dbEntry[i])
 
         #QMessageBox.information(self, "Why Not", str(firstName) + " has been added!")
-        if soffit.isChecked():
-            soffit.clear()
+        if soffit.isChecked() == True:
+            print("Soffit Checked")
+            self.soffitCheck.setChecked(False)
         if roofing.isChecked():
-            pass
+            print("Roofing Checked")
+            self.roofCheck.setChecked(False)
         if gutters.isChecked():
-            pass
+            print("Gutters Checked")
+            self.guttersCheck.setChecked(False)
         if siding.isChecked():
-            pass
+            print("Siding Checked")
+            self.sidingCheck.setChecked(False)
         if downspot.isChecked():
-            pass
+            print("Downspot Checked")
+            self.downspotCheck.setChecked(False)
         if kitchen.isChecked():
-            pass
+            print("Kitchen Checked")
+            self.kitchenCheck.setChecked(False)
         if deck.isChecked():
-            pass
+            print("Deck Checked")
+            self.deckCheck.setChecked(False)
         if electrical.isChecked():
-            pass
+            print("Electrical Checked")
+            self.electricalCheck.setChecked(False)
 
         self.firstNameEdit.clear()
         NewCustomerWindow.close(self)
@@ -93,6 +101,15 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
             print(dbEntry[i])
         #c = conn.cursor()
         #c.execute('''CREATE TABLE customers()''')
+
+
+class Add2DataBase(QThread):
+
+    def __init__(self, parent=None):
+        super(Add2DataBase, self).__init__(parent)
+
+    def run(self):
+        QMessageBox.information(self, "Done!", "Done.")
 
 
 app = QApplication(sys.argv)
