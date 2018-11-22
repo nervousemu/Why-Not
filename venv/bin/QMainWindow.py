@@ -31,8 +31,10 @@ class MainWindow(QMainWindow, welcomeGui.Ui_mainWindow):
         self.setupUi(self)
 
         self.connect(self.newButton, SIGNAL("clicked()"), self.newCustomer)
+        self.connect(self.openButton, SIGNAL("clicked()"), self.openCustomer)
 
         self.newCust = NewCustomerWindow()
+        self.openCust = SearchCustomers()
 
         self.dbCursor = self.dbConn.cursor()
         self.dbCursor.execute("""CREATE TABLE IF NOT EXISTS Customers(id INTEGER PRIMARY KEY, firstname TEXT,
@@ -42,6 +44,9 @@ class MainWindow(QMainWindow, welcomeGui.Ui_mainWindow):
 
     def newCustomer(self):
         self.newCust.open()
+
+    def openCustomer(self):
+        self.openCust.open()
 
 
 class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
@@ -118,7 +123,11 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
         self.notesEdit.clear()
 
 
-class SearchCustomers(QDialog, customerSearchGui.Ui_)
+class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
+
+    def __init__(self, parent=None):
+        super(SearchCustomers, self).__init__(parent)
+        self.setupUi(self)
 
 
 app = QApplication(sys.argv)
