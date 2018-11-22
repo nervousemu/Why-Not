@@ -414,6 +414,19 @@ p, li { white-space: pre-wrap; }
       </rect>
      </property>
     </widget>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>280</y>
+       <width>121</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Additional Notes:</string>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

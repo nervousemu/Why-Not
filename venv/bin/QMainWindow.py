@@ -4,14 +4,27 @@ from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 
 import sys
+import os
+import logging
 
 import welcomeGui
 import newCustGui
+import customerSearchGui
 import sqlite3
-conn = sqlite3.connect('customer.db')
+
+appDataPath = os.path.expanduser("~") + "/Why-Not-Data/"
+
+if not os.path.exists(appDataPath):
+    try:
+        os.makedirs(appDataPath)
+    except Exception:
+        appDataPath = os.getcwd()
 
 
 class MainWindow(QMainWindow, welcomeGui.Ui_mainWindow):
+
+    dbPath = appDataPath + "customer.db"
+    dbConn = sqlite3.connect(dbPath)
 
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
@@ -21,11 +34,20 @@ class MainWindow(QMainWindow, welcomeGui.Ui_mainWindow):
 
         self.newCust = NewCustomerWindow()
 
+        self.dbCursor = self.dbConn.cursor()
+        self.dbCursor.execute("""CREATE TABLE IF NOT EXISTS Customers(id INTEGER PRIMARY KEY, firstname TEXT,
+        lastname TEXT, address TEXT, address2 TEXT, city TEXT, state TEXT, zip TEXT)""")
+        self.dbConn.commit()
+        self.dbConn.close()
+
     def newCustomer(self):
         self.newCust.open()
 
 
 class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
+
+    dbPath = appDataPath + "customer.db"
+    dbConn = sqlite3.connect(dbPath)
 
     def __init__(self, parent=None):
         super(NewCustomerWindow, self).__init__(parent)
@@ -33,85 +55,70 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
 
         self.buttonBox.accepted.connect(self.addCustomer)
         self.buttonBox.rejected.connect(self.cancelAdd)
+        self.dbCursor = self.dbConn.cursor()
+
+
 
     def addCustomer(self):
-        firstName = self.firstNameEdit.text()
-        lastName = self.lastNameEdit.text()
+        """Adds customer information to database. Clears form afterwords."""
+        first_name = self.firstNameEdit.text()
+        last_name = self.lastNameEdit.text()
         address = self.addressEdit.text()
         address2 = self.address2Edit.text()
         city = self.cityEdit.text()
         state = self.stateEdit.text()
-        zipCode = self.zipEdit.text()
-        houseType = self.houseTypeEdit.text()
-        jobCost = self.costEdit.text()
-        soffit = self.soffitCheck
-        roofing = self.roofCheck
-        gutters = self.guttersCheck
-        siding = self.sidingCheck
-        downspot = self.downspotCheck
-        kitchen = self.kitchenCheck
-        deck = self.deckCheck
-        electrical = self.electricalCheck
+        zip_code = self.zipEdit.text()
 
-        dbEntry = [firstName, lastName, address, address2, city, state, zipCode]
+        # currentRowCount = self.mainTable.rowCount()
+        #
+        # self.mainTable.insertRow(currentRowCount)
+        # self.mainTable.setItem(currentRowCount, 0, QTableWidgetItem(first_name))
+        # self.mainTable.setItem(currentRowCount, 1, QTableWidgetItem(last_name))
+        # self.mainTable.setItem(currentRowCount, 2, QTableWidgetItem(address))
+        # self.mainTable.setItem(currentRowCount, 3, QTableWidgetItem(address2))
+        # self.mainTable.setItem(currentRowCount, 4, QTableWidgetItem(city))
+        # self.mainTable.setItem(currentRowCount, 5, QTableWidgetItem(state))
+        # self.mainTable.setItem(currentRowCount, 6, QTableWidgetItem(zip_code))
 
-        c = conn.cursor()
-        c.execute("INSERT INTO customers VALUES (firstName, lastName, address, address2, city, state, zipCode)")
-        conn.committ()
+        parameters = (None, first_name, last_name, address, address2, city, state, zip_code)
+        self.dbCursor.execute('''INSERT INTO Customers VALUES (?, ?, ?, ?, ?, ?, ?, ?)''', parameters)
+        self.dbConn.commit()
 
-        #for i in range(len(dbEntry)):
-         #   print(dbEntry[i])
-
-        #QMessageBox.information(self, "Why Not", str(firstName) + " has been added!")
-        if soffit.isChecked() == True:
-            print("Soffit Checked")
-            self.soffitCheck.setChecked(False)
-        if roofing.isChecked():
-            print("Roofing Checked")
-            self.roofCheck.setChecked(False)
-        if gutters.isChecked():
-            print("Gutters Checked")
-            self.guttersCheck.setChecked(False)
-        if siding.isChecked():
-            print("Siding Checked")
-            self.sidingCheck.setChecked(False)
-        if downspot.isChecked():
-            print("Downspot Checked")
-            self.downspotCheck.setChecked(False)
-        if kitchen.isChecked():
-            print("Kitchen Checked")
-            self.kitchenCheck.setChecked(False)
-        if deck.isChecked():
-            print("Deck Checked")
-            self.deckCheck.setChecked(False)
-        if electrical.isChecked():
-            print("Electrical Checked")
-            self.electricalCheck.setChecked(False)
-
-        self.firstNameEdit.clear()
+        self.clearForm()
         NewCustomerWindow.close(self)
 
     def cancelAdd(self):
+        """Cancel current customer input and closes and clears form"""
         yes = QMessageBox.Yes
         msgBox = QMessageBox.question(self, "Why Not", "Information added will not be saved, continue?", yes
                                       , QMessageBox.No)
         if msgBox == yes:
+            self.clearForm()
             NewCustomerWindow.close(self)
 
-    def addToDB(self, dbEntry):
-        for i in range(len(dbEntry)):
-            print(dbEntry[i])
-        #c = conn.cursor()
-        #c.execute('''CREATE TABLE customers()''')
+    def clearForm(self):
+        """Clears all of the text edits and check boxes on the new customer form."""
+        self.firstNameEdit.clear()
+        self.lastNameEdit.clear()
+        self.addressEdit.clear()
+        self.address2Edit.clear()
+        self.cityEdit.clear()
+        self.stateEdit.clear()
+        self.zipEdit.clear()
+        self.soffitCheck.setChecked(False)
+        self.roofCheck.setChecked(False)
+        self.guttersCheck.setChecked(False)
+        self.sidingCheck.setChecked(False)
+        self.downspotCheck.setChecked(False)
+        self.kitchenCheck.setChecked(False)
+        self.deckCheck.setChecked(False)
+        self.electricalCheck.setChecked(False)
+        self.houseTypeEdit.clear()
+        self.costEdit.clear()
+        self.notesEdit.clear()
 
 
-class Add2DataBase(QThread):
-
-    def __init__(self, parent=None):
-        super(Add2DataBase, self).__init__(parent)
-
-    def run(self):
-        QMessageBox.information(self, "Done!", "Done.")
+class SearchCustomers(QDialog, customerSearchGui.Ui_)
 
 
 app = QApplication(sys.argv)

@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file 'newCustomer.ui',
 # licensing of 'newCustomer.ui' applies.
 #
-# Created: Wed Nov  7 16:17:49 2018
+# Created: Wed Nov 21 15:57:16 2018
 #      by: pyside2-uic  running on PySide2 5.11.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -118,6 +118,9 @@ class Ui_newCustomerDialog(object):
         self.notesEdit = QtWidgets.QTextEdit(self.tab_2)
         self.notesEdit.setGeometry(QtCore.QRect(150, 300, 781, 251))
         self.notesEdit.setObjectName("notesEdit")
+        self.label_11 = QtWidgets.QLabel(self.tab_2)
+        self.label_11.setGeometry(QtCore.QRect(150, 280, 121, 17))
+        self.label_11.setObjectName("label_11")
         self.customerTab.addTab(self.tab_2, "")
 
         self.retranslateUi(newCustomerDialog)
@@ -150,5 +153,6 @@ class Ui_newCustomerDialog(object):
         self.deckCheck.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Deck", None, -1))
         self.electricalCheck.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Electrical", None, -1))
         self.label_10.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Estimated cost of job:", None, -1))
+        self.label_11.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Additional Notes:", None, -1))
         self.customerTab.setTabText(self.customerTab.indexOf(self.tab_2), QtWidgets.QApplication.translate("newCustomerDialog", "House Info", None, -1))
 
