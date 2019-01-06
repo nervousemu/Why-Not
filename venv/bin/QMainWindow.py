@@ -62,8 +62,6 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
         self.buttonBox.rejected.connect(self.cancelAdd)
         self.dbCursor = self.dbConn.cursor()
 
-
-
     def addCustomer(self):
         """Adds customer information to database. Clears form afterwords."""
         first_name = self.firstNameEdit.text()
@@ -128,6 +126,15 @@ class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
     def __init__(self, parent=None):
         super(SearchCustomers, self).__init__(parent)
         self.setupUi(self)
+
+        self.buttonBox.accepted.connect(self.searchCustomer)
+        self.buttonBox.rejected.connect(self.cancelSearch)
+
+    def searchCustomer(self):
+        SearchCustomers.close(self)
+
+    def cancelSearch(self):
+        SearchCustomers.close(self)
 
 
 app = QApplication(sys.argv)
