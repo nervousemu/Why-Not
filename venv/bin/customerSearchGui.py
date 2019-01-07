@@ -7,6 +7,7 @@
 #      by: pyside2-uic  running on PySide2 5.11.1
 #
 # WARNING! All changes made in this file will be lost!
+# This line serves no purpose
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
