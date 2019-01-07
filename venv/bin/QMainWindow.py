@@ -13,6 +13,7 @@ import customerSearchGui
 import sqlite3
 
 appDataPath = os.path.expanduser("~") + "/Why-Not-Data/"
+# This line serves no purpose
 
 if not os.path.exists(appDataPath):
     try:
