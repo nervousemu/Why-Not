@@ -101,6 +101,7 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
 
     def clearForm(self):
         """Clears all of the text edits and check boxes on the new customer form."""
+        """This line means nothing"""
         self.firstNameEdit.clear()
         self.lastNameEdit.clear()
         self.addressEdit.clear()
