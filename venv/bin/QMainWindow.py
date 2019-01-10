@@ -37,6 +37,8 @@ class MainWindow(QMainWindow, welcomeGui.Ui_mainWindow):
         self.newCust = NewCustomerWindow()
         self.openCust = SearchCustomers()
 
+        self.actionExit.triggered.connect(self.exit_action_triggered)
+
         self.dbCursor = self.dbConn.cursor()
         self.dbCursor.execute("""CREATE TABLE IF NOT EXISTS Customers(id INTEGER PRIMARY KEY, firstname TEXT,
         lastname TEXT, address TEXT, address2 TEXT, city TEXT, state TEXT, zip TEXT)""")
@@ -49,6 +51,8 @@ class MainWindow(QMainWindow, welcomeGui.Ui_mainWindow):
     def openCustomer(self):
         self.openCust.open()
 
+    def exit_action_triggered(self):
+        self.close()
 
 class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
 
@@ -129,11 +133,22 @@ class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
         super(SearchCustomers, self).__init__(parent)
         self.setupUi(self)
 
-        self.buttonBox.accepted.connect(self.searchCustomer)
+        self.connect(self.searchButton, SIGNAL("clicked()"), self.searchCustomer)
+        self.buttonBox.accepted.connect(self.openInfo)
         self.buttonBox.rejected.connect(self.cancelSearch)
 
     def searchCustomer(self):
-        SearchCustomers.close(self)
+        first_name = self.firstNameEdit.text()
+        last_name = self.lastNameEdit.text()
+        address = self.addressEdit.text()
+        city = self.cityEdit.text()
+        state = self.stateEdit.text()
+        zip_code = self.zipEdit.text()
+
+
+
+    def openInfo(self):
+        pass
 
     def cancelSearch(self):
         SearchCustomers.close(self)

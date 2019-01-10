@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'customerSearch.ui',
-# licensing of 'customerSearch.ui' applies.
+# Form implementation generated from reading ui file 'customerSearch.ui'
 #
-# Created: Wed Nov 21 19:04:27 2018
-#      by: pyside2-uic  running on PySide2 5.11.1
+# Created: Thu Jan 10 13:40:41 2019
+#      by: pyside2-uic 2.0.0 running on PySide2 5.6.0~a1
 #
 # WARNING! All changes made in this file will be lost!
-# This line serves no purpose
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
 class Ui_searchDialog(object):
     def setupUi(self, searchDialog):
         searchDialog.setObjectName("searchDialog")
-        searchDialog.resize(1184, 775)
+        searchDialog.resize(1184, 851)
         self.label = QtWidgets.QLabel(searchDialog)
         self.label.setGeometry(QtCore.QRect(70, 30, 301, 21))
         self.label.setObjectName("label")
@@ -36,9 +34,9 @@ class Ui_searchDialog(object):
         self.addressEdit = QtWidgets.QLineEdit(searchDialog)
         self.addressEdit.setGeometry(QtCore.QRect(70, 230, 281, 27))
         self.addressEdit.setObjectName("addressEdit")
-        self.pushButton = QtWidgets.QPushButton(searchDialog)
-        self.pushButton.setGeometry(QtCore.QRect(50, 450, 99, 27))
-        self.pushButton.setObjectName("pushButton")
+        self.searchButton = QtWidgets.QPushButton(searchDialog)
+        self.searchButton.setGeometry(QtCore.QRect(50, 450, 99, 27))
+        self.searchButton.setObjectName("searchButton")
         self.buttonBox = QtWidgets.QDialogButtonBox(searchDialog)
         self.buttonBox.setGeometry(QtCore.QRect(950, 730, 176, 27))
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
@@ -82,7 +80,7 @@ class Ui_searchDialog(object):
         self.label_2.setText(QtWidgets.QApplication.translate("searchDialog", "First Name:", None, -1))
         self.label_3.setText(QtWidgets.QApplication.translate("searchDialog", "Last Name:", None, -1))
         self.label_4.setText(QtWidgets.QApplication.translate("searchDialog", "Address:", None, -1))
-        self.pushButton.setText(QtWidgets.QApplication.translate("searchDialog", "Search", None, -1))
+        self.searchButton.setText(QtWidgets.QApplication.translate("searchDialog", "Search", None, -1))
         self.label_5.setText(QtWidgets.QApplication.translate("searchDialog", "Address line 2:", None, -1))
         self.label_6.setText(QtWidgets.QApplication.translate("searchDialog", "City:", None, -1))
         self.label_7.setText(QtWidgets.QApplication.translate("searchDialog", "State:", None, -1))
