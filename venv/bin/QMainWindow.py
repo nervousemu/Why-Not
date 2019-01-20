@@ -43,7 +43,6 @@ class MainWindow(QMainWindow, welcomeGui.Ui_mainWindow):
         self.dbCursor.execute("""CREATE TABLE IF NOT EXISTS Customers(id INTEGER PRIMARY KEY, firstname TEXT,
         lastname TEXT, address TEXT, address2 TEXT, city TEXT, state TEXT, zip TEXT)""")
         self.dbConn.commit()
-        self.dbConn.close()
 
     def newCustomer(self):
         self.newCust.open()
@@ -53,6 +52,7 @@ class MainWindow(QMainWindow, welcomeGui.Ui_mainWindow):
 
     def exit_action_triggered(self):
         self.close()
+
 
 class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
 
@@ -76,17 +76,6 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
         city = self.cityEdit.text()
         state = self.stateEdit.text()
         zip_code = self.zipEdit.text()
-
-        # currentRowCount = self.mainTable.rowCount()
-        #
-        # self.mainTable.insertRow(currentRowCount)
-        # self.mainTable.setItem(currentRowCount, 0, QTableWidgetItem(first_name))
-        # self.mainTable.setItem(currentRowCount, 1, QTableWidgetItem(last_name))
-        # self.mainTable.setItem(currentRowCount, 2, QTableWidgetItem(address))
-        # self.mainTable.setItem(currentRowCount, 3, QTableWidgetItem(address2))
-        # self.mainTable.setItem(currentRowCount, 4, QTableWidgetItem(city))
-        # self.mainTable.setItem(currentRowCount, 5, QTableWidgetItem(state))
-        # self.mainTable.setItem(currentRowCount, 6, QTableWidgetItem(zip_code))
 
         parameters = (None, first_name, last_name, address, address2, city, state, zip_code)
         self.dbCursor.execute('''INSERT INTO Customers VALUES (?, ?, ?, ?, ?, ?, ?, ?)''', parameters)
@@ -129,13 +118,39 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
 
 class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
 
+    dbPath = appDataPath + "customer.db"
+    dbConn = sqlite3.connect(dbPath)
+
     def __init__(self, parent=None):
         super(SearchCustomers, self).__init__(parent)
         self.setupUi(self)
 
+        self.dbCursor = self.dbConn.cursor()
+        self.dbCursor.execute("""CREATE TABLE IF NOT EXISTS Main(id INTEGER PRIMARY KEY,
+                                        first_name TEXT, last_name TEXT, address TEXT, address2 TEXT, city TEXT, state TEXT, zip_code TEXT)""")
+        self.dbConn.commit()
+
         self.connect(self.searchButton, SIGNAL("clicked()"), self.searchCustomer)
         self.buttonBox.accepted.connect(self.openInfo)
         self.buttonBox.rejected.connect(self.cancelSearch)
+
+        self.load_initial_settings()
+
+    def load_initial_settings(self):
+        """Loads the initial settings, displays the customer list"""
+        self.dbCursor.execute("""SELECT * FROM Customers""")
+        allRows = self.dbCursor.fetchall()
+
+        for row in allRows:
+            inx = allRows.index(row)
+            self.mainTable.insertRow(inx)
+            self.mainTable.setItem(inx, 0, QTableWidgetItem(row[1]))
+            self.mainTable.setItem(inx, 1, QTableWidgetItem(row[2]))
+            self.mainTable.setItem(inx, 2, QTableWidgetItem(row[3]))
+            self.mainTable.setItem(inx, 3, QTableWidgetItem(row[4]))
+            self.mainTable.setItem(inx, 4, QTableWidgetItem(row[5]))
+            self.mainTable.setItem(inx, 5, QTableWidgetItem(row[6]))
+            self.mainTable.setItem(inx, 6, QTableWidgetItem(row[7]))
 
     def searchCustomer(self):
         first_name = self.firstNameEdit.text()
@@ -145,12 +160,35 @@ class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
         state = self.stateEdit.text()
         zip_code = self.zipEdit.text()
 
+        table_name = "Customers"
+        column_2 = "firstname"
 
+        self.dbCursor.execute('SELECT * FROM {tn} WHERE {cn}="{fn}"'.format(tn=table_name, cn=column_2, fn=first_name))
+        all_rows = self.dbCursor.fetchall()
+        print('1):', all_rows)
+
+        self.mainTable.clearContents()
+
+        for i in all_rows:
+            row_list = []
+            row_list[i] = all_rows(i)
+            currentRowCount = self.mainTable.rowCount()
+            self.mainTable.insertRow(currentRowCount, 0, QTableWidgetItem(row_list[i]))
+
+        # currentRowCount = self.mainTable.rowCount()
+        # self.mainTable.insertRow(currentRowCount)
+        # self.mainTable.setItem(currentRowCount, 0, QTableWidgetItem(first_name))
+        # self.mainTable.setItem(currentRowCount, 1, QTableWidgetItem(last_name))
+        # self.mainTable.setItem(currentRowCount, 2, QTableWidgetItem(address))
+        # self.mainTable.setItem(currentRowCount, 3, QTableWidgetItem(city))
+        # self.mainTable.setItem(currentRowCount, 4, QTableWidgetItem(state))
+        # self.mainTable.setItem(currentRowCount, 5, QTableWidgetItem(zip_code))
 
     def openInfo(self):
         pass
 
     def cancelSearch(self):
+        self.dbConn.close()
         SearchCustomers.close(self)
 
 

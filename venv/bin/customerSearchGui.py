@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'customerSearch.ui'
+# Form implementation generated from reading ui file 'customerSearch.ui',
+# licensing of 'customerSearch.ui' applies.
 #
-# Created: Thu Jan 10 13:40:41 2019
-#      by: pyside2-uic 2.0.0 running on PySide2 5.6.0~a1
+# Created: Fri Jan 18 04:07:22 2019
+#      by: pyside2-uic  running on PySide2 5.11.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -65,11 +66,26 @@ class Ui_searchDialog(object):
         self.zipEdit = QtWidgets.QLineEdit(searchDialog)
         self.zipEdit.setGeometry(QtCore.QRect(140, 400, 131, 27))
         self.zipEdit.setObjectName("zipEdit")
-        self.tableWidget = QtWidgets.QTableWidget(searchDialog)
-        self.tableWidget.setGeometry(QtCore.QRect(440, 20, 731, 671))
-        self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(0)
-        self.tableWidget.setRowCount(0)
+        self.mainTable = QtWidgets.QTableWidget(searchDialog)
+        self.mainTable.setGeometry(QtCore.QRect(440, 20, 731, 671))
+        self.mainTable.setObjectName("mainTable")
+        self.mainTable.setColumnCount(7)
+        self.mainTable.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.mainTable.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.mainTable.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.mainTable.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.mainTable.setHorizontalHeaderItem(3, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.mainTable.setHorizontalHeaderItem(4, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.mainTable.setHorizontalHeaderItem(5, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.mainTable.setHorizontalHeaderItem(6, item)
+        self.mainTable.horizontalHeader().setStretchLastSection(True)
 
         self.retranslateUi(searchDialog)
         QtCore.QMetaObject.connectSlotsByName(searchDialog)
@@ -85,4 +101,11 @@ class Ui_searchDialog(object):
         self.label_6.setText(QtWidgets.QApplication.translate("searchDialog", "City:", None, -1))
         self.label_7.setText(QtWidgets.QApplication.translate("searchDialog", "State:", None, -1))
         self.label_8.setText(QtWidgets.QApplication.translate("searchDialog", "Zip Code:", None, -1))
+        self.mainTable.horizontalHeaderItem(0).setText(QtWidgets.QApplication.translate("searchDialog", "First Name", None, -1))
+        self.mainTable.horizontalHeaderItem(1).setText(QtWidgets.QApplication.translate("searchDialog", "Last Name", None, -1))
+        self.mainTable.horizontalHeaderItem(2).setText(QtWidgets.QApplication.translate("searchDialog", "Address", None, -1))
+        self.mainTable.horizontalHeaderItem(3).setText(QtWidgets.QApplication.translate("searchDialog", "Address 2", None, -1))
+        self.mainTable.horizontalHeaderItem(4).setText(QtWidgets.QApplication.translate("searchDialog", "City", None, -1))
+        self.mainTable.horizontalHeaderItem(5).setText(QtWidgets.QApplication.translate("searchDialog", "New Column", None, -1))
+        self.mainTable.horizontalHeaderItem(6).setText(QtWidgets.QApplication.translate("searchDialog", "Zip Code", None, -1))
 
