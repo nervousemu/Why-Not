@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d553db6-5605-4dc2-b07e-b59a362b52f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Why-Not.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Why-Not.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/bin/QMainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/QMainWindow.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/bin/UI/customerSearch.ui" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/UI/customerSearch.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/bin/UI/mainWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/UI/mainWindow.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/UI/newCustomer.ui" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/UI/newCustomer.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/bin/customerSearchGui.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/customerSearchGui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/bin/newCustGui.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/bin/newCustGui.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/venv/bin/QMainWindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="173" column="36" selection-start-line="173" selection-start-column="36" selection-end-line="173" selection-end-column="36" />
+            <state relative-caret-position="501">
+              <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -31,10 +30,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/bin/QNewCustomer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="402">
+              <caret line="91" column="13" selection-start-line="86" selection-start-column="10" selection-end-line="91" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/bin/QSearchCustomers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-483">
+              <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file:///usr/lib/python3/dist-packages/apt/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file:///usr/lib/python3/dist-packages/apport/fileutils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="435">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -51,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/bin/newCustGui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+            <state relative-caret-position="825">
+              <caret line="55" column="53" selection-start-line="55" selection-start-column="53" selection-end-line="55" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -60,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/bin/customerSearchGui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
-              <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
+            <state relative-caret-position="945">
+              <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -106,15 +138,17 @@
         <option value="$PROJECT_DIR$/venv/bin/customerSearchGui.py" />
         <option value="$PROJECT_DIR$/venv/bin/newCustGui.py" />
         <option value="$PROJECT_DIR$/venv/bin/welcomeGui.py" />
+        <option value="$PROJECT_DIR$/venv/bin/QSearchCustomers.py" />
+        <option value="$PROJECT_DIR$/venv/bin/QNewCustomer.py" />
         <option value="$PROJECT_DIR$/venv/bin/QMainWindow.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="928" />
-    <option name="height" value="992" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="251" />
+    <option name="y" value="43" />
+    <option name="width" value="1077" />
+    <option name="height" value="964" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -138,13 +172,6 @@
               <item name="Why-Not" type="462c0819:PsiDirectoryNode" />
               <item name="venv" type="462c0819:PsiDirectoryNode" />
               <item name="bin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Why-Not" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Why-Not" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -327,25 +354,32 @@
       <option name="project" value="LOCAL" />
       <updated>1546893551493</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="1/7/2019 Commit">
+      <created>1547974979951</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1547974979952</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="928" height="992" extended-state="4" />
+    <frame x="251" y="43" width="1077" height="964" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.30272108" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26188168" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32601157" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39932886" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3154122" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39884394" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.31850117" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32947975" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32922733" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -398,11 +432,24 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Python-GUI/Threading/bin/threading.py" />
-    <entry file="file:///usr/lib/python3/dist-packages/apt/__init__.py" />
     <entry file="file:///usr/lib/python3/dist-packages/apport/packaging_impl.py" />
     <entry file="file://$PROJECT_DIR$/venv/bin/mainGui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-306" />
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3/dist-packages/apt/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/python3/dist-packages/apport/fileutils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
       </provider>
     </entry>
     <entry file="file:///usr/lib/python3/dist-packages/apport/report.py">
@@ -414,15 +461,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/bin/newCustGui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        <state relative-caret-position="825">
+          <caret line="55" column="53" selection-start-line="55" selection-start-column="53" selection-end-line="55" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/bin/customerSearchGui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
+        <state relative-caret-position="945">
+          <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -440,17 +487,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/lib/python3/dist-packages/apport/fileutils.py">
+    <entry file="file://$PROJECT_DIR$/venv/bin/QSearchCustomers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="-483">
+          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/bin/QNewCustomer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="91" column="13" selection-start-line="86" selection-start-column="10" selection-end-line="91" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/bin/QMainWindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="173" column="36" selection-start-line="173" selection-start-column="36" selection-end-line="173" selection-end-column="36" />
+        <state relative-caret-position="501">
+          <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>

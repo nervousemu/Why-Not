@@ -3,11 +3,10 @@
 # Form implementation generated from reading ui file 'newCustomer.ui',
 # licensing of 'newCustomer.ui' applies.
 #
-# Created: Wed Nov 21 15:57:16 2018
+# Created: Wed Jan 23 16:31:39 2019
 #      by: pyside2-uic  running on PySide2 5.11.1
 #
 # WARNING! All changes made in this file will be lost!
-# This line serves no purpose
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
@@ -16,7 +15,7 @@ class Ui_newCustomerDialog(object):
         newCustomerDialog.setObjectName("newCustomerDialog")
         newCustomerDialog.resize(1089, 768)
         self.textBrowser = QtWidgets.QTextBrowser(newCustomerDialog)
-        self.textBrowser.setGeometry(QtCore.QRect(440, 10, 411, 61))
+        self.textBrowser.setGeometry(QtCore.QRect(360, 10, 491, 61))
         self.textBrowser.setObjectName("textBrowser")
         self.buttonBox = QtWidgets.QDialogButtonBox(newCustomerDialog)
         self.buttonBox.setGeometry(QtCore.QRect(880, 710, 176, 27))
@@ -28,40 +27,34 @@ class Ui_newCustomerDialog(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.label_7 = QtWidgets.QLabel(self.tab)
-        self.label_7.setGeometry(QtCore.QRect(440, 220, 51, 17))
+        self.label_7.setGeometry(QtCore.QRect(440, 160, 51, 17))
         self.label_7.setObjectName("label_7")
         self.label_2 = QtWidgets.QLabel(self.tab)
         self.label_2.setGeometry(QtCore.QRect(350, 10, 81, 17))
         self.label_2.setObjectName("label_2")
         self.zipEdit = QtWidgets.QLineEdit(self.tab)
-        self.zipEdit.setGeometry(QtCore.QRect(520, 250, 171, 27))
+        self.zipEdit.setGeometry(QtCore.QRect(520, 190, 171, 27))
         self.zipEdit.setObjectName("zipEdit")
-        self.address2Edit = QtWidgets.QLineEdit(self.tab)
-        self.address2Edit.setGeometry(QtCore.QRect(10, 180, 311, 27))
-        self.address2Edit.setObjectName("address2Edit")
-        self.label_5 = QtWidgets.QLabel(self.tab)
-        self.label_5.setGeometry(QtCore.QRect(20, 150, 161, 17))
-        self.label_5.setObjectName("label_5")
         self.label_4 = QtWidgets.QLabel(self.tab)
         self.label_4.setGeometry(QtCore.QRect(20, 90, 131, 17))
         self.label_4.setObjectName("label_4")
         self.stateEdit = QtWidgets.QLineEdit(self.tab)
-        self.stateEdit.setGeometry(QtCore.QRect(430, 250, 71, 27))
+        self.stateEdit.setGeometry(QtCore.QRect(430, 190, 71, 27))
         self.stateEdit.setObjectName("stateEdit")
         self.label_8 = QtWidgets.QLabel(self.tab)
-        self.label_8.setGeometry(QtCore.QRect(530, 220, 51, 17))
+        self.label_8.setGeometry(QtCore.QRect(530, 160, 51, 17))
         self.label_8.setObjectName("label_8")
         self.addressEdit = QtWidgets.QLineEdit(self.tab)
         self.addressEdit.setGeometry(QtCore.QRect(10, 110, 691, 27))
         self.addressEdit.setObjectName("addressEdit")
         self.label_6 = QtWidgets.QLabel(self.tab)
-        self.label_6.setGeometry(QtCore.QRect(20, 220, 41, 17))
+        self.label_6.setGeometry(QtCore.QRect(20, 160, 41, 17))
         self.label_6.setObjectName("label_6")
         self.lastNameEdit = QtWidgets.QLineEdit(self.tab)
         self.lastNameEdit.setGeometry(QtCore.QRect(340, 40, 361, 27))
         self.lastNameEdit.setObjectName("lastNameEdit")
         self.cityEdit = QtWidgets.QLineEdit(self.tab)
-        self.cityEdit.setGeometry(QtCore.QRect(10, 250, 401, 27))
+        self.cityEdit.setGeometry(QtCore.QRect(10, 190, 401, 27))
         self.cityEdit.setObjectName("cityEdit")
         self.firstNameEdit = QtWidgets.QLineEdit(self.tab)
         self.firstNameEdit.setGeometry(QtCore.QRect(10, 40, 311, 27))
@@ -69,6 +62,12 @@ class Ui_newCustomerDialog(object):
         self.label = QtWidgets.QLabel(self.tab)
         self.label.setGeometry(QtCore.QRect(20, 10, 81, 17))
         self.label.setObjectName("label")
+        self.label_23 = QtWidgets.QLabel(self.tab)
+        self.label_23.setGeometry(QtCore.QRect(20, 10, 81, 17))
+        self.label_23.setObjectName("label_23")
+        self.label_24 = QtWidgets.QLabel(self.tab)
+        self.label_24.setGeometry(QtCore.QRect(350, 10, 81, 17))
+        self.label_24.setObjectName("label_24")
         self.customerTab.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -125,7 +124,7 @@ class Ui_newCustomerDialog(object):
         self.customerTab.addTab(self.tab_2, "")
 
         self.retranslateUi(newCustomerDialog)
-        self.customerTab.setCurrentIndex(1)
+        self.customerTab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(newCustomerDialog)
 
     def retranslateUi(self, newCustomerDialog):
@@ -134,14 +133,15 @@ class Ui_newCustomerDialog(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:28pt;\">Customer Information</span></p></body></html>", None, -1))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:28pt;\">Enter Customer Information</span></p></body></html>", None, -1))
         self.label_7.setText(QtWidgets.QApplication.translate("newCustomerDialog", "State:", None, -1))
         self.label_2.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Last Name:", None, -1))
-        self.label_5.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Street Address(Line 2):", None, -1))
         self.label_4.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Street Address:", None, -1))
         self.label_8.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Zip", None, -1))
         self.label_6.setText(QtWidgets.QApplication.translate("newCustomerDialog", "City:", None, -1))
         self.label.setText(QtWidgets.QApplication.translate("newCustomerDialog", "First Name:", None, -1))
+        self.label_23.setText(QtWidgets.QApplication.translate("newCustomerDialog", "First Name:", None, -1))
+        self.label_24.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Last Name:", None, -1))
         self.customerTab.setTabText(self.customerTab.indexOf(self.tab), QtWidgets.QApplication.translate("newCustomerDialog", "Customer Info", None, -1))
         self.label_3.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Type of House:", None, -1))
         self.label_9.setText(QtWidgets.QApplication.translate("newCustomerDialog", "Services to provide:", None, -1))
