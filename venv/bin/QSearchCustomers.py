@@ -28,6 +28,7 @@ class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
 
     dbPath = appDataPath + "customer.db"
     dbConn = sqlite3.connect(dbPath)
+    print(appDataPath)
 
     def __init__(self, parent=None):
         super(SearchCustomers, self).__init__(parent)
