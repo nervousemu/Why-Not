@@ -11,8 +11,6 @@ import welcomeGui
 import newCustGui
 import customerSearchGui
 import sqlite3
-import QNewCustomer
-import QSearchCustomers
 
 appDataPath = os.path.expanduser("~") + "/Why-Not-Data/"
 # This line serves no purpose
@@ -36,31 +34,128 @@ class MainWindow(QMainWindow, welcomeGui.Ui_mainWindow):
         self.connect(self.newButton, SIGNAL("clicked()"), self.newCustomer)
         self.connect(self.openButton, SIGNAL("clicked()"), self.openCustomer)
 
-        # self.newCust = QNewCustomer()
-        # self.openCust = SearchCustomers()
+        self.newCust = NewCustomerWindow()
+        self.openCust = SearchCustomers()
 
         self.actionExit.triggered.connect(self.exit_action_triggered)
 
         self.dbCursor = self.dbConn.cursor()
         self.dbCursor.execute("""CREATE TABLE IF NOT EXISTS Customers(id INTEGER PRIMARY KEY, firstname TEXT,
-        lastname TEXT, address TEXT, city TEXT, state TEXT, zip TEXT)""")
+        lastname TEXT, address TEXT, address2 TEXT, city TEXT, state TEXT, zip TEXT)""")
         self.dbConn.commit()
+        self.dbConn.close()
 
     def newCustomer(self):
-        # QNewCustomer.NewCustomerWindow(self)
-        pass
+        self.newCust.open()
 
     def openCustomer(self):
-        # QSearchCustomers
-        pass
+        self.openCust.open()
 
     def exit_action_triggered(self):
-        self.close
+        self.close()
 
 
-app = QApplication.instance()
-if app is None:
-    app = QApplication(sys.argv)
+class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
+
+    dbPath = appDataPath + "customer.db"
+    dbConn = sqlite3.connect(dbPath)
+
+    def __init__(self, parent=None):
+        super(NewCustomerWindow, self).__init__(parent)
+        self.setupUi(self)
+
+        self.buttonBox.accepted.connect(self.addCustomer)
+        self.buttonBox.rejected.connect(self.cancelAdd)
+        self.dbCursor = self.dbConn.cursor()
+
+    def addCustomer(self):
+        """Adds customer information to database. Clears form afterwords."""
+        first_name = self.firstNameEdit.text()
+        last_name = self.lastNameEdit.text()
+        address = self.addressEdit.text()
+        address2 = self.address2Edit.text()
+        city = self.cityEdit.text()
+        state = self.stateEdit.text()
+        zip_code = self.zipEdit.text()
+
+        # currentRowCount = self.mainTable.rowCount()
+        #
+        # self.mainTable.insertRow(currentRowCount)
+        # self.mainTable.setItem(currentRowCount, 0, QTableWidgetItem(first_name))
+        # self.mainTable.setItem(currentRowCount, 1, QTableWidgetItem(last_name))
+        # self.mainTable.setItem(currentRowCount, 2, QTableWidgetItem(address))
+        # self.mainTable.setItem(currentRowCount, 3, QTableWidgetItem(address2))
+        # self.mainTable.setItem(currentRowCount, 4, QTableWidgetItem(city))
+        # self.mainTable.setItem(currentRowCount, 5, QTableWidgetItem(state))
+        # self.mainTable.setItem(currentRowCount, 6, QTableWidgetItem(zip_code))
+
+        parameters = (None, first_name, last_name, address, address2, city, state, zip_code)
+        self.dbCursor.execute('''INSERT INTO Customers VALUES (?, ?, ?, ?, ?, ?, ?, ?)''', parameters)
+        self.dbConn.commit()
+
+        self.clearForm()
+        NewCustomerWindow.close(self)
+
+    def cancelAdd(self):
+        """Cancel current customer input and closes and clears form"""
+        yes = QMessageBox.Yes
+        msgBox = QMessageBox.question(self, "Why Not", "Information added will not be saved, continue?", yes
+                                      , QMessageBox.No)
+        if msgBox == yes:
+            self.clearForm()
+            NewCustomerWindow.close(self)
+
+    def clearForm(self):
+        """Clears all of the text edits and check boxes on the new customer form."""
+        """This line means nothing"""
+        self.firstNameEdit.clear()
+        self.lastNameEdit.clear()
+        self.addressEdit.clear()
+        self.address2Edit.clear()
+        self.cityEdit.clear()
+        self.stateEdit.clear()
+        self.zipEdit.clear()
+        self.soffitCheck.setChecked(False)
+        self.roofCheck.setChecked(False)
+        self.guttersCheck.setChecked(False)
+        self.sidingCheck.setChecked(False)
+        self.downspotCheck.setChecked(False)
+        self.kitchenCheck.setChecked(False)
+        self.deckCheck.setChecked(False)
+        self.electricalCheck.setChecked(False)
+        self.houseTypeEdit.clear()
+        self.costEdit.clear()
+        self.notesEdit.clear()
+
+
+class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
+
+    def __init__(self, parent=None):
+        super(SearchCustomers, self).__init__(parent)
+        self.setupUi(self)
+
+        self.connect(self.searchButton, SIGNAL("clicked()"), self.searchCustomer)
+        self.buttonBox.accepted.connect(self.openInfo)
+        self.buttonBox.rejected.connect(self.cancelSearch)
+
+    def searchCustomer(self):
+        first_name = self.firstNameEdit.text()
+        last_name = self.lastNameEdit.text()
+        address = self.addressEdit.text()
+        city = self.cityEdit.text()
+        state = self.stateEdit.text()
+        zip_code = self.zipEdit.text()
+
+
+
+    def openInfo(self):
+        pass
+
+    def cancelSearch(self):
+        SearchCustomers.close(self)
+
+
+app = QApplication(sys.argv)
 form = MainWindow()
 form.show()
 app.exec_()
