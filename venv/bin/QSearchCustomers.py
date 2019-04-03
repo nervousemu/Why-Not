@@ -133,4 +133,3 @@ class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
     def cancelSearch(self):
         self.dbConn.close()
         SearchCustomers.close(self)
-        

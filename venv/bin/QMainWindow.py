@@ -11,6 +11,7 @@ import welcomeGui
 import newCustGui
 import customerSearchGui
 import sqlite3
+import customerEdit
 
 appDataPath = os.path.expanduser("~") + "/Why-Not-Data/"
 print(appDataPath)
@@ -35,21 +36,23 @@ class MainWindow(QMainWindow, welcomeGui.Ui_mainWindow):
         self.connect(self.newButton, SIGNAL("clicked()"), self.newCustomer)
         self.connect(self.openButton, SIGNAL("clicked()"), self.openCustomer)
 
-        self.newCust = NewCustomerWindow()
-        self.openCust = SearchCustomers()
+        # self.newCust = NewCustomerWindow()
+        # self.openCust = SearchCustomers()
 
         self.actionExit.triggered.connect(self.exit_action_triggered)
 
         self.dbCursor = self.dbConn.cursor()
         self.dbCursor.execute("""CREATE TABLE IF NOT EXISTS Customers(id INTEGER PRIMARY KEY, first_name TEXT,
-        last_name TEXT, address TEXT, city TEXT, state TEXT, zip_code TEXT)""")
+        last_name TEXT, address TEXT, city TEXT, state TEXT, zip_code TEXT, notes TEXT)""")
         self.dbConn.commit()
         self.dbConn.close()
 
     def newCustomer(self):
+        self.newCust = NewCustomerWindow()
         self.newCust.open()
 
     def openCustomer(self):
+        self.openCust = SearchCustomers()
         self.openCust.open()
 
     def exit_action_triggered(self):
@@ -77,6 +80,7 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
         city = self.cityEdit.text()
         state = self.stateEdit.text()
         zip_code = self.zipEdit.text()
+        adtl_info = self.notesEdit.toPlainText()
 
         # currentRowCount = self.mainTable.rowCount()
         #
@@ -88,8 +92,8 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
         # self.mainTable.setItem(currentRowCount, 5, QTableWidgetItem(state))
         # self.mainTable.setItem(currentRowCount, 6, QTableWidgetItem(zip_code))
 
-        parameters = (None, first_name, last_name, address, city, state, zip_code)
-        self.dbCursor.execute('''INSERT INTO Customers VALUES (?, ?, ?, ?, ?, ?, ?)''', parameters)
+        parameters = (None, first_name, last_name, address, city, state, zip_code, adtl_info)
+        self.dbCursor.execute('''INSERT INTO Customers VALUES (?, ?, ?, ?, ?, ?, ?, ?)''', parameters)
         self.dbConn.commit()
 
         self.clearForm()
@@ -106,23 +110,22 @@ class NewCustomerWindow(QDialog, newCustGui.Ui_newCustomerDialog):
 
     def clearForm(self):
         """Clears all of the text edits and check boxes on the new customer form."""
-        """This line means nothing"""
         self.firstNameEdit.clear()
         self.lastNameEdit.clear()
         self.addressEdit.clear()
         self.cityEdit.clear()
         self.stateEdit.clear()
         self.zipEdit.clear()
-        self.soffitCheck.setChecked(False)
-        self.roofCheck.setChecked(False)
-        self.guttersCheck.setChecked(False)
-        self.sidingCheck.setChecked(False)
-        self.downspotCheck.setChecked(False)
-        self.kitchenCheck.setChecked(False)
-        self.deckCheck.setChecked(False)
-        self.electricalCheck.setChecked(False)
-        self.houseTypeEdit.clear()
-        self.costEdit.clear()
+        # self.soffitCheck.setChecked(False)
+        # self.roofCheck.setChecked(False)
+        # self.guttersCheck.setChecked(False)
+        # self.sidingCheck.setChecked(False)
+        # self.downspotCheck.setChecked(False)
+        # self.kitchenCheck.setChecked(False)
+        # self.deckCheck.setChecked(False)
+        # self.electricalCheck.setChecked(False)
+        # self.houseTypeEdit.clear()
+        # self.costEdit.clear()
         self.notesEdit.clear()
 
 
@@ -151,26 +154,28 @@ class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
 
         self.mainTable.cellDoubleClicked.connect(self.cell_was_clicked)
 
+        # self.customerInfo = {'indx': 0, 'firstN': '', 'lastN': '', 'address': '', 'city': '', 'state': '', 'zip': ''}
+
         self.ID = ''
 
         self.load_initial_stuff()
 
     def load_initial_stuff(self):
         """Loads the initial settings, displays the customer list"""
-        pass
-        # self.dbCursor.execute("""SELECT * FROM Customers""")
-        # allRows = self.dbCursor.fetchall()
-        #
-        # for row in allRows:
-        #     inx = allRows.index(row)
-        #     self.mainTable.insertRow(inx)
-        #     self.mainTable.setItem(inx, 0, QTableWidgetItem(row[1]))
-        #     self.mainTable.setItem(inx, 1, QTableWidgetItem(row[2]))
-        #     self.mainTable.setItem(inx, 2, QTableWidgetItem(row[3]))
-        #     self.mainTable.setItem(inx, 3, QTableWidgetItem(row[4]))
-        #     self.mainTable.setItem(inx, 4, QTableWidgetItem(row[5]))
-        #     self.mainTable.setItem(inx, 5, QTableWidgetItem(row[6]))
-        #     print(allRows[inx])
+        self.dbCursor.execute("""SELECT * FROM Customers""")
+        allRows = self.dbCursor.fetchall()
+
+
+        for row in allRows:
+            inx = allRows.index(row)
+            self.mainTable.insertRow(inx)
+            self.mainTable.setItem(inx, 0, QTableWidgetItem(row[1]))
+            self.mainTable.setItem(inx, 1, QTableWidgetItem(row[2]))
+            self.mainTable.setItem(inx, 2, QTableWidgetItem(row[3]))
+            self.mainTable.setItem(inx, 3, QTableWidgetItem(row[4]))
+            self.mainTable.setItem(inx, 4, QTableWidgetItem(row[5]))
+            self.mainTable.setItem(inx, 5, QTableWidgetItem(row[6]))
+            print(allRows[inx])
 
     def cell_was_clicked(self, row, column):
         """extracts data in a cell that was double clicked"""
@@ -178,6 +183,9 @@ class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
         cell_data = self.mainTable.item(row, column)
         self.ID = cell_data
         print(self.ID.text())
+        print(self.mainTable.item(row, 0))
+
+
 
     def searchCustomer(self):
         first_name = self.firstNameEdit.text()
@@ -219,6 +227,7 @@ class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
             self.mainTable.setItem(inx, 3, QTableWidgetItem(row[4]))
             self.mainTable.setItem(inx, 4, QTableWidgetItem(row[5]))
             self.mainTable.setItem(inx, 5, QTableWidgetItem(row[6]))
+
 
         # currentRowCount = self.mainTable.rowCount()
         # self.mainTable.insertRow(currentRowCount)
