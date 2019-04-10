@@ -180,12 +180,15 @@ class SearchCustomers(QDialog, customerSearchGui.Ui_searchDialog):
     def cell_was_clicked(self, row, column):
         """extracts data in a cell that was double clicked"""
         print("Row %d and Column %d was clicked" % (row, column))
+        turkey = self.mainTable.rowSpan(row, column)
+        print(turkey)
         cell_data = self.mainTable.item(row, column)
         self.ID = cell_data
         print(self.ID.text())
         print(self.mainTable.item(row, 0))
-
-
+        row_data = []
+        # for i in row:
+        #     print(i)
 
     def searchCustomer(self):
         first_name = self.firstNameEdit.text()
